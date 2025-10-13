@@ -1,6 +1,6 @@
-# 🌱 Hydrolink SCRUM + DevOps
+# 🌱 Hydrolink - SCRUM + DevOps
 
-**Hydrolink** es una aplicación IoT (Internet of Things) diseñada para **automatizar el control y gestión de recursos hídricos y energéticos** en una planta de riego agrícola.  
+**Hydrolink** es una aplicación IoT diseñada para **automatizar el control y gestión de recursos hídricos y energéticos** en una planta de riego agrícola.  
 El sistema combina sensores, actuadores y una plataforma web que permite **monitorear, programar y optimizar** el uso del agua y otros recursos en tiempo real.
 
 Proyecto académico para la activación técnica de **SCRUM + DevOps** en un entorno digital integrado.  
@@ -30,22 +30,22 @@ En esta fase, se implementa un **ecosistema colaborativo** para la gestión ági
 
 ## 👥 Roles en el equipo
 
-| Rol  | Responsabilidades principales |
-|------|-------------------------------|
-| **Product Owner** | Define el backlog del producto y prioridades. |
-| **Scrum Master**  | Facilita las ceremonias Scrum y mantiene el flujo ágil. |
+| Rol                 | Responsabilidades principales                             |
+| ------------------- | --------------------------------------------------------- |
+| **Product Owner**   | Define el backlog del producto y prioridades.             |
+| **Scrum Master**    | Facilita las ceremonias Scrum y mantiene el flujo ágil.   |
 | **DevOps Engineer** | Configura el pipeline y gestiona la integración continua. |
-| **Developers** | Desarrollan, prueban y entregan funcionalidades. |
+| **Developers**      | Desarrollan, prueban y entregan funcionalidades.          |
 
 ---
 
 ## ⚙️ Funcionalidades principales
 
-- 🌱 **Monitoreo en tiempo real:** Lectura de sensores de humedad, temperatura y nivel de agua.  
-- 💧 **Control automático de riego:** Activación de válvulas y bombas según condiciones definidas.  
-- 📊 **Gestión de recursos:** Registro y seguimiento de consumos de agua y energía.  
-- 🧾 **Módulo administrativo:** Control de clientes, cotizaciones, proveedores y compras.  
-- 🔔 **Alertas y notificaciones:** Envío de avisos al detectar valores fuera de rango o fallas del sistema.  
+- 🌱 **Monitoreo en tiempo real:** Lectura de sensores de humedad, temperatura y nivel de agua.
+- 💧 **Control automático de riego:** Activación de válvulas y bombas según condiciones definidas.
+- 📊 **Gestión de recursos:** Registro y seguimiento de consumos de agua y energía.
+- 🧾 **Módulo administrativo:** Control de clientes, cotizaciones, proveedores y compras.
+- 🔔 **Alertas y notificaciones:** Envío de avisos al detectar valores fuera de rango o fallas del sistema.
 - ☁️ **Panel personal:** Visualización y control centralizado desde cualquier dispositivo conectado.
 
 ---
