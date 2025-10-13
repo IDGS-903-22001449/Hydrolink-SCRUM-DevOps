@@ -28,7 +28,7 @@ En esta fase, se implementa un **ecosistema colaborativo** para la gestión ági
 
 ---
 
-## 👥 Roles del equipo
+## 👥 Roles en el equipo
 
 | Rol  | Responsabilidades principales |
 |------|-------------------------------|
