@@ -3,7 +3,7 @@
 **Hydrolink** es una aplicación IoT diseñada para **automatizar el control y gestión de recursos hídricos y energéticos** en una planta de riego agrícola.  
 El sistema combina sensores, actuadores y una plataforma web que permite **monitorear, programar y optimizar** el uso del agua y otros recursos en tiempo real.
 
-Proyecto académico para la activación técnica de **SCRUM + DevOps** en un entorno digital integrado.  
+Proyecto académico de simulación para la activación técnica de **SCRUM + DevOps** en un entorno digital integrado.  
 Este entorno conecta **Microsoft Teams**, **GitHub** y **Planner**, reflejando los artefactos y procesos de un marco ágil con pipeline DevOps básico.
 
 ---
