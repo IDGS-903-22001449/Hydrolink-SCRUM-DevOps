@@ -1,0 +1,94 @@
+# ==========================================================
+# Pipeline para la Historia de Usuario US001: Agregar tipo de planta
+# Simulación completa del flujo CI/CD (Build, Test y Deploy)
+# ==========================================================
+
+trigger:
+- feature/US001-addPlant  # Se ejecuta al hacer commit en la rama específica
+
+pool:
+  vmImage: 'ubuntu-latest'  # Agente Ubuntu para compilación Android
+
+variables:
+  # Variables del entorno Android
+  androidApiLevel: '30'
+  androidBuildToolsVersion: '30.0.3'
+  appName: 'app-debug.apk'
+
+# ==========================================================
+# ETAPA 1: Integración Continua (Build + Test)
+# ==========================================================
+stages:
+- stage: Build_Test_CI
+  displayName: '1. Integración Continua (Build y Test)'
+  jobs:
+  - job: Android_Build_Job
+    displayName: 'Compilar y Probar Aplicación Android'
+    steps:
+
+    # --- Checkout del código ---
+    - checkout: self
+      displayName: 'Descargar código desde Azure Repos'
+
+    # --- Instalación del SDK y Build Tools ---
+    - script: |
+        echo "Instalando SDK de Android..."
+        sdkmanager "platforms;android-$(androidApiLevel)" "build-tools;$(androidBuildToolsVersion)"
+      displayName: 'Instalar SDK y Build Tools'
+
+    # --- Compilación del APK ---
+    - task: Gradle@2
+      displayName: 'Build: Compilar APK (assembleDebug)'
+      inputs:
+        gradleWrapperFile: 'gradlew'
+        tasks: 'assembleDebug'
+        publishJUnitResults: true
+        testResultsFiles: '**/TEST-*.xml'
+
+    # --- Ejecución de pruebas unitarias ---
+    - task: Gradle@2
+      displayName: 'Test: Ejecutar Pruebas Unitarias'
+      inputs:
+        gradleWrapperFile: 'gradlew'
+        tasks: 'test'
+        publishJUnitResults: true
+        testResultsFiles: '**/TEST-*.xml'
+
+
+# ==========================================================
+# ETAPA 2: Entrega Continua (Despliegue Simulado)
+# ==========================================================
+- stage: Deploy_CD
+  displayName: '2. Entrega Continua (Despliegue Simulado)'
+  dependsOn: Build_Test_CI
+  condition: succeeded()
+  jobs:
+  - job: Deploy_App_Center
+    displayName: 'Despliegue Simulado a Staging'
+    steps:
+
+    # --- Simulación del despliegue ---
+    - script: |
+        echo "==============================================="
+        echo "Iniciando despliegue simulado a App Center"
+        echo "Conexión: MyAppCenterConnection (simulada)"
+        echo "Aplicación: MyOrganization/MyAndroidApp"
+        echo "Archivo: **/app/build/outputs/apk/debug/$(appName)"
+        echo "Grupo de distribución: Testers QA"
+        echo "Notas de versión: Versión CI/CD para US001"
+        echo "Publicando build..."
+        sleep 2
+        echo "✔ Despliegue completado exitosamente (simulado)"
+        echo "==============================================="
+      displayName: 'Simular Deploy a App Center'
+
+    # --- Simulación del monitoreo ---
+    - task: PowerShell@2
+      displayName: 'Monitor: Simular Configuración de Alertas'
+      inputs:
+        targetType: 'inline'
+        script: |
+          echo " Configurando simulación de monitoreo..."
+          echo "Integrando Crashlytics y Azure Monitor (simulado)"
+          echo "Activando alertas para fallos de app y problemas MQTT"
+          echo "✔ Monitoreo configurado exitosamente (simulado)"
