@@ -1,0 +1,65 @@
+trigger:
+- feature/US001-addPlant
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  androidApiLevel: '30'
+  androidBuildToolsVersion: '30.0.3'
+  appName: 'app-debug.apk'
+
+stages:
+- stage: Build_Test_CI
+  displayName: '1. Integración Continua (Build y Test)'
+  jobs:
+  - job: Android_Build_Job
+    displayName: 'Compilar y Probar'
+    steps:
+    - checkout: self
+      displayName: 'Descargar código de Azure Repos'
+
+    - script: |
+        sdkmanager "platforms;android-$(androidApiLevel)" "build-tools;$(androidBuildToolsVersion)"
+      displayName: 'Instalar SDK y Build Tools'
+
+    - task: Gradle@2
+      displayName: 'Build: Compilar APK (assembleDebug)'
+      inputs:
+        gradleWrapperFile: 'gradlew'
+        tasks: 'assembleDebug'
+        publishJUnitResults: true
+        testResultsFiles: '**/TEST-*.xml'
+
+    - task: Gradle@2
+      displayName: 'Test: Ejecutar Pruebas Unitarias'
+      inputs:
+        gradleWrapperFile: 'gradlew'
+        tasks: 'test'
+        publishJUnitResults: true
+        testResultsFiles: '**/TEST-*.xml'
+
+- stage: Deploy_CD
+  displayName: '2. Entrega Continua (Despliegue)'
+  dependsOn: Build_Test_CI
+  condition: succeeded()
+  jobs:
+  - job: Deploy_App_Center
+    displayName: 'Despliegue a Staging'
+    steps:
+    - task: AppCenterDistribute@3
+      displayName: 'Deploy: Publicar en App Center (Staging)'
+      inputs:
+        serverEndpoint: 'MyAppCenterConnection'
+        appId: 'MyOrganization/MyAndroidApp'
+        appFile: '**/app/build/outputs/apk/debug/$(appName)'
+        distributionGroup: 'Testers QA'
+        releaseNotesInput: 'Versión CI/CD para US001'
+
+    - task: PowerShell@2
+      displayName: 'Monitor: Simular Configuración de Alertas'
+      inputs:
+        targetType: 'inline'
+        script: |
+          echo "Simulando configuración de monitoreo con Crashlytics y Azure Monitor."
+          echo "Se activan alertas para fallos de App y problemas de conexión MQTT."
