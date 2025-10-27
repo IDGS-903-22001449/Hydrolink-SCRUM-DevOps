@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PlantMonitor</string>
+    <string name="home">Inicio</string>
+    <string name="monitor">Monitor</string>
+    <string name="search">Buscar</string>
+    <string name="settings">Configuración</string>
+</resources>
